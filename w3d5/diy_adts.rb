@@ -1,3 +1,5 @@
+  require 'byebug'
+  
   class Stack
     attr_reader :stack
     # Implement and test Stack class
@@ -72,17 +74,24 @@ class Map
 
   def get(key)
     #return value at given key
+
     map.each {|pair| return pair if pair[0] == key}
     return false
   end
 
   def delete(key, value)
     
+    map.each do |pair| 
+      if pair[0] == key
+        return map.delete(pair)
+      end
+    end
+    
+    return nil
   end
 
   def show
-
+    
   end
-  
 end
 
