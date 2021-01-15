@@ -71,7 +71,9 @@ class Map
   end
 
   def get(key)
-
+    #return value at given key
+    map.each {|pair| return pair if pair[0] == key}
+    return false
   end
 
   def delete(key, value)
