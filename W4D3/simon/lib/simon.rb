@@ -11,6 +11,9 @@ class Simon
   end
 
   def play
+    puts "ALRIGHT JOE! READY FOR A GAME OF"
+    puts "       KOPPALA SAYS!?!!!"
+    puts
     until self.game_over == true
       take_turn
     end
@@ -33,7 +36,11 @@ class Simon
 
   def show_sequence
     add_random_color
-    puts "Simon says... #{@seq}.. ."
+    puts "Koppala says:" 
+    puts "#{@seq.join(' ')}"
+    sleep(3)
+    print "\r" + ("\e[A\e[K")
+    #
 
     #sleep before clearing screen
     #player_seq = gets.chomp.split
@@ -63,13 +70,22 @@ class Simon
   end
 
   def round_success_message
-    puts "we did it, we did it joe..."
+    puts
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    puts " We did it, we did it Joe..."
+    puts " You're going on to round #{self.sequence_length + 1}."
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    puts
 
   end
 
   def game_over_message
-    puts "...cya joe, koppala 2024!!!"
-
+    puts
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    puts " Sorry Joe, you didn't do it..."
+    puts " Koppala said: #{self.seq.join(' ')}"
+    puts " See you in 2024!"
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
   end
 
   def reset_game
