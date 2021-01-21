@@ -6,8 +6,10 @@ Instructions: implement all of the pending specs (the `it` statements without bl
 =end
 
 describe Dessert do
-  let(:chef) { double("chef") }
-  subject(:dessert) {Dessert.new("non-vegan", 2, 'Becky' )}
+  let(:chef) { double("chef")}
+  let(:test) { ['milk', 'butter', 'eggs']}
+  subject(:dessert) {Dessert.new("non-vegan", 2, :chef )}
+
 
   describe "#initialize" do
     it "sets a type" do
@@ -36,13 +38,23 @@ describe Dessert do
   end
 
   describe "#mix!" do
-    it "shuffles the ingredient array"
+    it "shuffles the ingredient array" do
+      dessert.add_ingredient(test)
+      expect(dessert.ingredients).to receive(:shuffle!)
+      dessert.mix!
+    end
   end
 
   describe "#eat" do
-    it "subtracts an amount from the quantity"
+    it "subtracts an amount from the quantity" do
+      dessert.eat(1)
+      expect(dessert.quantity).to eq(1)
+    end
 
-    it "raises an error if the amount is greater than the quantity"
+
+    it "raises an error if the amount is greater than the quantity" do
+      expect{ dessert.eat(3)}.to raise_error("not enough left!")
+    end
   end
 
   describe "#serve" do
@@ -50,6 +62,9 @@ describe Dessert do
   end
 
   describe "#make_more" do
-    it "calls bake on the dessert's chef with the dessert passed in"
-  end
+     it "calls bake on the dessert's chef with the dessert passed in" #do
+  #     expect(chef).to receive(:bake).with(dessert)
+  #     dessert.make_more
+  #   end
+   end
 end
