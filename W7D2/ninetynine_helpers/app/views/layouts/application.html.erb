@@ -36,3 +36,10 @@
     <%= yield :footer %>
   </footer>
 </html>
+
+
+
+<% if flash[:errors] %>
+    flash[:errors]
+<% end %>
+
